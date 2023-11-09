@@ -1,7 +1,1 @@
 id,platform_name,owner,balance,cvv,address,card_holder,card_type,card_website,website_username,website_password,email,email_password,date_exp,card_number,document_reference,notes,date_created,user_id
-92a2748d-2b9a-445c-a0ea-fb1897f4035e,ee,שש,,,,,,,,,,,,,,,2023-11-04,2
-f68a8b28-da3a-424d-be1d-ba37b1a2d312,ee,cscs,,,,,,,,,,,,,,,2023-11-06,4
-850d8551-4794-4606-9a07-ab6c3fd4bdfb,ee,sscsccsc,cscs,,,,,,,,,,,,,,2023-11-06,4
-0aae9f09-e78b-41ab-b894-f91e038a054e,ee,,,,,,,,,,,,,,,,2023-11-06,4
-3cafa17e-8454-4f57-b62c-7ec3bb9d3f3a,ee,ss,,,,,,,,,,,,,,,2023-11-06,4
-8960ea80-3515-4573-874d-956e42a759b1,ee,csc,,,,,,,,,,,,,,,2023-11-06,4
