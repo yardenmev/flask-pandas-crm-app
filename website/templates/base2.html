@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="\static\base.css">
+    <script src="\static\index.js"></script>
+    <script src='../static/index.global.js'></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+<nav>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+            {% if user.is_authenticated %}
+            <div class="right"><form method="POST" action=""> <input type="search" name="search"><button class="btn-secondary" type="submit">search </button></form></div>
+            <a class="nav-item nav-link" id="home" href="/">בית</a>
+            <a class="nav-item nav-link" id="create-post" href="/create-service">יצר נכס</a>
+            <a class="nav-item nav-link" id="create-platform" href="/create-platform">ייצר פלטפורמה</a>
+            <a class="nav-item nav-link" id="create-credit" href="/create-credit">ייצר אשראי</a>
+            <a class="nav-item nav-link" id="create-platform-user" href="/create-platform-user">ייצר יישות</a>
+            <a class="nav-item nav-link" id="TODO" href="/create_task">משימות</a>
+            <div ><a class="nav-item nav-link ml-auto" id="current_user" href="current_user">שלום {{current_user.username}}</a> </div>
+            <a class="nav-item nav-link" id="login" href="/login">התנתק</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %} {% if
+messages %} {% for category, message in messages %} {% if category ==
+'error' %}
+<div id="alertContainer">
+<div class="alert danger" role="alert" id="myAlert">
+    {{message}}
+    <span class="closebtn" onclick="closeAlert();"></span>
+</div>
+</div>
+{% else %}
+
+<div id="alertContainer">
+<div class="alert success" role="alert" id="myAlert">
+    {{message}}
+    <span class="closebtn" onclick="closeAlert();"></span>
+</div>
+</div>
+
+{% endif %} {% endfor %} {% endif %} {% endwith %}
+
+<script>
+    // Function to close the alert with a fade-out effect
+    function closeAlert() {
+        var alert = document.getElementById("myAlert");
+        alert.style.transition = "opacity 0.6s";
+        alert.style.opacity = "0";
+        setTimeout(function () {
+            alert.style.display = "none";
+        }, 600); 
+    }
+
+    // Automatically close the alert 
+    setTimeout(function () {
+        closeAlert();
+    }, 1200);
+</script>
+
+
+<div >{% block content %} {% endblock %}</div>
+
+</body>
+</html>

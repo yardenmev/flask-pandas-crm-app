@@ -1,0 +1,129 @@
+{% extends "base2.html" %}
+{% block title %}all data for {{platform_name}}{% endblock %}
+{% block content %}
+<h1 class="center"> Showing all for {{platform_name}} platform</h1> 
+<div class="grid-container">
+    {%if not credits%}
+    <p class="center">אין נתוני אשראי לפלטפורמה זו</> 
+    {%else%}
+    <div class="box-3"> 
+        <h1 class="center">אשראי </h1> 
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>owner</th>
+                    <th>Card type</th>
+                    <th>Balance</th>
+                    <th>Document Reference</th>
+                    <th>Website</th>
+                    <th>Notes</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for credit in credits %}
+                        <td>{{ credit['owner'] }}</td>
+                        <td>{{ credit['card_type'] }}</td>
+                        <td>{{ credit['balance'] }}</td>
+                        <td>{{ credit['document_reference'] }}</td>
+                        <td>{{ credit['card_website'] }}</td>
+                        <td>{{ credit['notes'] }}</td>
+                        <td>
+                        <div class="btn-group">
+                                <a href="/edit-credit/{{ credit.id }}">
+                                    <button type="button" class="btn btn-secondary">Show more /Edit</button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </ul>
+
+    </div>
+    {%endif%}
+    {%if not services%}
+    <p class="center">אין נכסים לפלטפורמה זו</> 
+    {%else%}
+    <div class="box-3"> 
+        <table class="styled-table">
+            <h1 class="center">נכסים</h1>
+            <thead>
+                <tr>
+                    <th>owner</th>
+                    <th>Service Type</th>
+                    <th>Exp Date</th>
+                    <th>Document Reference</th>
+                    <th>Phone</th>
+                    <th>Notes</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for service in services %}
+                        <td>{{ service['used_by'] }}</td>
+                        <td>{{ service['service_type'] }}</td>
+                        <td>{{ service['date_exp'] }}</td>
+                        <td>{{ service['doc_reff'] }}</td>
+                        <td>{{ service['phone'] }}</td>
+                        <td>{{ service['etc'] }}</td>
+                        <td>
+                        <div class="btn-group">
+                                <a href="/edit-service/{{ service.id }}">
+                                    <button type="button" class="btn btn-secondary">Show more /Edit</button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {%endif%}
+    {%if not agents%}
+    <p class="center">אין יישויות לפלטפורמה זו</> 
+    {%else%}
+    <div class="box-3"> 
+        <h1 class="center">יישויות</h1> 
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Platform Name</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Email Password</th>
+                    <th>Document Reference</th>
+                    <th>Notes</th>
+
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for agent in agents %}
+                    <tr>
+                        <td><a href="/show-all/{{ agent['platform_name'] }}" class="table-link">{{ agent['platform_name'] }}</a></td>
+                        <td>{{ agent['name'] }}</td>
+                        <td>{{ agent['email1'] }}</td>
+                        <td>{{ agent['email_password1'] }}</td>
+                        <td>{{ agent['document_reference'] }}</td>
+                        <td>{{ agent['notes'] }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="/edit-platform-user/{{ agent.id }}">
+                                    <button type="button" class="btn btn-secondary">Show more /Edit</button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        {%endif%}
+
+
+{% endblock %}
+
+
+

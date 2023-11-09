@@ -1,0 +1,60 @@
+{% extends "base2.html" %}
+{% block title %}create post{% endblock %}
+{% block content %}
+<h1 class="text-center">Create a new service</h1>
+  <br/>
+
+  <form method="POST">
+    <div class="form-row">
+        <div class="col">
+            <!-- <input type="text" class="form-control" name="platform_name" id="platform_name" placeholder="platform_ame"> -->
+
+            <select class="form-control" name="platform_name" id="platform_name">
+                {% for platform in platforms %}
+                    <option value="{{ platform.platform_name}}"> {{ platform.platform_name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="service" id="service" placeholder="Service">
+            <br/>
+            <input type="date"  class="form-control" name="user-date" id="user-date" placeholder="user-date" required>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="ip" id="ip" placeholder="IP">
+            <br/>
+            <input type="text" class="form-control" name="password" id="password" placeholder="Password">
+        </div>
+        <br />
+        <div align="center">
+            <button type="submit" class="btn btn-lg btn-primary">Post</button>
+        </div>
+        <br/>
+    </div>
+</form>
+
+    <br />
+    <div align="center">
+      <a href="/"
+        ><button type="button" class="btn btn-lg btn-secondary">Back</button></a
+      >
+    </div>
+  </div>
+  <br>
+  
+ 
+  {% endblock %}
+
+  <script>
+    document.getElementById("platform_Name").addEventListener("change", function () {
+        if (this.value === "other") {
+            this.setAttribute("name", "custom_platform_Name");
+            this.removeAttribute("required");
+            this.nextElementSibling.style.display = "block";
+        } else {
+            this.setAttribute("name", "platform_Name");
+            this.setAttribute("required", "required");
+            this.nextElementSibling.style.display = "none";
+        }
+    });
+</script>

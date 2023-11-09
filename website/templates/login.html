@@ -1,0 +1,33 @@
+{% extends "base2.html" %} {% block title %}Login{% endblock %} {% block content
+%}
+<div class="container">
+<form method="POST" action="/login">
+  <h3 align="center">Login</h3>
+  <div class="center">
+    <label for="username">User Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="username"
+      name="username"
+      placeholder="Enter User Name"
+    />
+  </div>
+  <br>
+  <div class="center">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      placeholder="Enter password"
+    />
+  </div>
+  <br />
+  <div class="center">
+  <button type="submit" class="btn btn-primary">Login</button>
+  </div>
+</form>
+</div>
+{% endblock %}

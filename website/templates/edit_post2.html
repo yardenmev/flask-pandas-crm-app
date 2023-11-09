@@ -1,0 +1,54 @@
+{% extends "base2.html" %}
+{% block title %} edit post{% endblock %}
+{% block content %}
+
+  <div class="container mt-4">
+    <h1 class="text-center">   update {{post.service}} on {{post.platform_name}} platform</h1>
+        <form action="/edit-post/{{post.id}}" METHOD="POST">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <<th>Post ID</th>
+                <th>Platform Name</th>
+                <th>Service</th>
+                <th>IP</th>
+                <th>Password</th>
+                <th>Date Exp</th>
+                <th>Date created</th>
+                <th>author</th>
+                <th>Options</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td>{{ post.id}}</td>
+                <td>{{ post.platform_name}}</td>
+                <td>{{ post.service}}</td>
+                <td><input type="text" placeholder="ip" name="ip" value="{{post.ip}}" </td>
+                <td><input type="text" placeholder="password" name="password" value="{{post.password}}" </td>
+                <td><input type="date" placeholder="user-date" name="user-date" id="user-date" value="{{ formatted_date_exp }}"></td>
+                <td>{{ post.date_created.strftime('%d/%m/%Y')}}</td>
+                <td>{{ post.user.first_name }}</td>
+                <td>
+                  <a href="/delete-post/{{post.id}}" class="dropdown-item">
+                    <button type="button" class="close" <span aria-hidden="true">&times;</span>
+                    </button>
+                </a> 
+                </td>
+              </tr>
+            </form>
+            </tbody>
+          </table>
+          <div class="text-center">
+              <input class="btn btn-success" type="submit" value="Submit ">
+              <a href="/home" >
+                <input class="btn btn-danger" type="button" value=" Cancel ">
+              </a>
+          </div>
+          
+   </div>
+  
+  
+{% endblock %}

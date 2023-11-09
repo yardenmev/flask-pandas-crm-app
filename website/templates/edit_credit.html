@@ -1,0 +1,211 @@
+{% extends "base2.html" %} 
+{% block title %}Edit Credit Card{% endblock %}
+{% block content %}
+<div class="container">
+  <h1 class="center">
+    Edit {{ row_data['owner'] }}'s credit on {{ row_data['platform_name'] }}
+  </h1>
+<div>
+    <a href="/delete/credit/{{ row_data['id'] }}">
+        <button type="button" class="delete-button" <span aria-hidden="true">Delete Card</span></button>
+    </a> 
+</div>
+  <br>
+  <form method="POST">
+    <div class="center">
+      <div class="row">
+        <div class="col">
+            <label for="platform_name" class="left">Platform Name:</label>
+            <select class="form-control" name="platform_name" id="platform_name">
+                {% for platform in platform_names %}
+                    <option value="{{ platform }}" {% if platform == row_data['platform_name'] %}selected{% endif %}>
+                        {{ platform }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col">
+          <label for="owner" class="left">Owner in the platform:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="owner"
+            id="owner"
+            placeholder="Owner"
+            value="{{ row_data['owner'] }}"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="balance" class="left">Balance:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="balance"
+            id="balance"
+            placeholder="Balance"
+            value="{{ row_data['balance'] }}"
+          />
+        </div>
+        <div class="col">
+          <label for="cvv" class="left">CVV:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cvv"
+            id="cvv"
+            placeholder="CVV"
+            value="{{ row_data['cvv'] }}"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="address" class="left">Address:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="address"
+            id="address"
+            placeholder="Address"
+            value="{{ row_data['address'] }}"
+          />
+        </div>
+        <div class="col">
+          <label for="card_holder" class="left">Card Holder:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="card_holder"
+            id="card_holder"
+            placeholder="Card Holder"
+            value="{{ row_data['card_holder'] }}"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="card_type" class="left">Card Type:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="card_type"
+            id="card_type"
+            placeholder="Card Type"
+            value="{{ row_data['card_type'] }}"
+          />
+        </div>
+        <div class="col">
+          <label for="card_website" class="left">Card Website:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="card_website"
+            id="card_website"
+            placeholder="Card Website"
+            value="{{ row_data['card_website'] }}"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="web_username" class="left">Website Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="web_username"
+            id="web_username"
+            placeholder="Website Username"
+            value="{{ row_data['website_username'] }}"
+          />
+        </div>
+        <div class="col">
+          <label for="web_password" class="left">Website Password:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="web_password"
+            id="web_password"
+            placeholder="Website Password"
+            value="{{ row_data['website_password'] }}"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="email" class="left">Email:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="email"
+            id="email"
+            placeholder="Email"
+            value="{{ row_data['email'] }}"
+          />
+        </div>
+        <div class="col">
+          <label for="email_password" class="left">Email Password:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="email_password"
+            id="email_password"
+            placeholder="Email Password"
+            value="{{ row_data['email_password'] }}"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="date_exp" class="left">Expiration Date:</label>
+          <input
+            type="date"
+            class="form-control"
+            name="date_exp"
+            id="date_exp"
+            placeholder="Expiration Date"
+            value="{{ row_data['date_exp'] }}"
+          />
+        </div>
+        <div class="col">
+          <label for="card_number" class="left">Card Number:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="card_number"
+            id="card_number"
+            placeholder="Card Number"
+            value="{{ row_data['card_number'] }}"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="doc_reff" class="left">Document Reference:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="document_reference"
+            id="document_reference"
+            placeholder="Document Reference"
+            value="{{ row_data['document_reference'] }}"
+          />
+        </div>
+        <div class="col">
+          <label for="notes" class="left">Notes:</label>
+          <textarea name="notes" id="notes" class="form-control">
+          {{ row_data['notes'] }}</textarea
+          >
+        </div>
+      </div>
+    </div>
+    <div class="center">
+      <button type="submit" class="btn btn-lg btn-primary">Save</button>
+    </div>
+  </form>
+  <br>
+  <div class="center"><button class="btn btn-lg btn-secondary" onclick="goBack()">Cancel </button></div>
+</div>
+
+{% endblock %}

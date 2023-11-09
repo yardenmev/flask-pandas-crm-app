@@ -1,0 +1,110 @@
+{% extends "base2.html" %}
+{% block title %}Edit Service{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="center">Edit {{ row_data['service_type'] }} on {{ row_data['platform_name'] }}</h1>
+    <div>
+        <a href="/delete/service/{{ row_data['id'] }}">
+            <button type="button" class="delete-button" <span aria-hidden="true">Delete Service</span></button>
+        </a>    
+    </div>
+    <br>
+    <form method="POST">
+      <div class="center">
+          <div class="row">
+              <div class="col">
+                <br>
+                <label for="platform_name" class="left">Platform Name:</label>
+            <select class="form-control" name="platform_name" id="platform_name">
+                {% for platform in platform_names %}
+                    <option value="{{ platform }}" {% if platform == row_data['platform_name'] %}selected{% endif %}>
+                        {{ platform }}
+                    </option>
+                {% endfor %}
+            </select>
+            </div>
+              <div class="col">
+                <label for="used_by" class="left">Used by:</label>
+                <input type="text" class="form-control" name="used_by" id="used_by" placeholder="Used by" value="{{ row_data['used_by'] }}">
+            </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <label for="service_type" class="left">Service Type:</label>
+                  <input type="text" class="form-control" name="service_type" id="service_type" placeholder="Service Type" value="{{ row_data['service_type'] }}">
+              </div>
+              <div class="col">
+                  <label for="website" class="left">Service Website:</label>
+                  <input type="text" class="form-control" name="website" id="website" placeholder="Service Website" value="{{ row_data['website'] }}">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <label for="web_username" class="left">Website Username:</label>
+                  <input type="text" class="form-control" name="web_username" id="web_username" placeholder="Website Username" value="{{ row_data['web_username'] }}">
+              </div>
+              <div class="col">
+                  <label for "web_password" class="left">Website Password:</label>
+                  <input type="text" class="form-control" name="web_password" id="web_password" placeholder="Website Password" value="{{ row_data['web_password'] }}">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <label for="email" class="left">Email:</label>
+                  <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="{{ row_data['email'] }}">
+              </div>
+              <div class="col">
+                  <label for="email_password" class="left">Email Password:</label>
+                  <input type="text" class="form-control" name="email_password" id="email_password" placeholder="Email Password" value="{{ row_data['email_password'] }}">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <label for="ip" class="left">IP/Domain:</label>
+                  <input type="text" class="form-control" name="ip" id="ip" placeholder="IP/Domain" value="{{row_data['ip']}}">
+              </div>
+              <div class="col">
+                  <label for="ip_username" class="left">IP Username:</label>
+                  <input type="text" class="form-control" name="ip_username" id="ip_username" placeholder="IP Username" value="{{ row_data['ip_username'] }}">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <label for="ip_password" class="left">IP Password:</label>
+                  <input type="text" class="form-control" name="ip_password" id="ip_password" placeholder="IP Password" value="{{ row_data['ip_password'] }}">
+              </div>
+              <div class="col">
+                  <label for="user-date" class="left">Exp-date:</label>
+                  <input type="date" class="form-control" name="date_exp" id="date_exp" placeholder="Exp-date" value="{{row_data['date_exp'] }}" >
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <label for="doc_reff" class="left">Document Reference:</label>
+                  <input type="text" class="form-control" name="doc_reff" id="doc_reff" placeholder="Document Reference" value="{{ row_data['doc_reff'] }}">
+              </div>
+              <div class="col">
+                  <label for="phone" class="left">Phone:</label>
+                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" value="{{ row_data['phone'] }}">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <label for="country" class="left">Country:</label>
+                  <input type="text" class="form-control" name="country" id="country" placeholder="Country" value="{{ row_data['country'] }}">
+              </div>
+              <div class="col">
+                <label for="etc" class="left">Notes:</label>
+                <textarea name="etc" id="etc" class="form-control">{{ row_data['etc'] }}</textarea>
+              </div>
+          </div>
+      </div>
+    <div class="center">
+          <input type="submit" class="btn btn-lg btn-primary" value="Save">
+    </div>
+  </form>
+  <br>
+  <div class="center"><button class="btn btn-lg btn-secondary" onclick="goBack()">Cancel</button></div>
+
+</div>
+{% endblock %}

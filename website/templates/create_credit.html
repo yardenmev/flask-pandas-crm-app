@@ -1,0 +1,188 @@
+{% extends "base2.html" %} {% block title %}Create a New Credit Card{% endblock
+%} {% block content %}
+
+<div class="container">
+  <h1 class="center">Create a New Credit Card</h1>
+  <br />
+
+  <form method="POST">
+    <div class="center">
+      <div class="row">
+        <div class="col">
+          <label for="platform_name" class="left">Platform Name:</label>
+          <select class="form-control" name="platform_name" id="platform_name">
+            {% for platform in platform_names %}
+            <option value="{{ platform }}">{{ platform }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col">
+          <label for="owner" class="left">Owner in the platform:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="owner"
+            id="owner"
+            placeholder="Owner"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="balance" class="left">Balance:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="balance"
+            id="balance"
+            placeholder="Balance"
+          />
+        </div>
+        <div class="col">
+          <label for="cvv" class="left">CVV:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cvv"
+            id="cvv"
+            placeholder="CVV"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="address" class="left">Address:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="address"
+            id="address"
+            placeholder="Address"
+          />
+        </div>
+        <div class="col">
+          <label for="card_holder" class="left">Card Holder:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="card_holder"
+            id="card_holder"
+            placeholder="Card Holder"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="card_type" class="left">Card Type:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="card_type"
+            id="card_type"
+            placeholder="Card Type"
+          />
+        </div>
+        <div class="col">
+          <label for="card_website" class="left">Card Website:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="card_website"
+            id="card_website"
+            placeholder="Card Website"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="web_username" class="left">Website Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="web_username"
+            id="web_username"
+            placeholder="Website Username"
+          />
+        </div>
+        <div class="col">
+          <label for="web_password" class="left">Website Password:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="web_password"
+            id="web_password"
+            placeholder="Website Password"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="email" class="left">Email:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="email"
+            id="email"
+            placeholder="Email"
+          />
+        </div>
+        <div class="col">
+          <label for="email_password" class="left">Email Password:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="email_password"
+            id="email_password"
+            placeholder="Email Password"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="date_exp" class="left">Expiration Date:</label>
+          <input
+            type="date"
+            class="form-control"
+            name="date_exp"
+            id="date_exp"
+            placeholder="Expiration Date"
+          />
+        </div>
+        <div class="col">
+          <label for="card_number" class="left">Card Number:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="card_number"
+            id="card_number"
+            placeholder="Card Number"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="doc_reff" class="left">Document Reference:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="document_reference"
+            id="document_reference"
+            placeholder="Document Reference"
+          />
+        </div>
+        <div class="col">
+          <label for="notes" class="left">Notes:</label>
+          <textarea name="notes" id="notes" class="form-control"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="center">
+      <button type="submit" class="btn btn-lg btn-primary">Post</button>
+      <a href="/"
+        ><button type="button" class="btn btn-lg btn-secondary">Back</button></a
+      >
+    </div>
+  </form>
+</div>
+
+{% endblock %}

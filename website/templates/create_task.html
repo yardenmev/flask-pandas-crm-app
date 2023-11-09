@@ -1,0 +1,119 @@
+{% extends "base2.html" %} 
+{% block title %}TODO List{% endblock %} 
+{% block content %}
+<div class="container">
+    <h1 class="center"> {{user.username.capitalize()}}'s Tasks List  </h1>
+    <form method="POST">
+        <div class="center">
+            <input type="text" placeholder="Add a task" class="form-control input-style" name="task" id="task">
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </div>
+    </form>
+    <br>
+    
+    <ul id="todo">
+        {% for task in tasks %}
+        {% if task['on_progress'] == True%}
+
+            <li class="list-group-item">
+                <form method="POST" action="/update-task-status/{{ task['id'] }}">
+                    <div>
+                        <input type="checkbox" {% if not task['on_progress'] %}checked{% endif %} onchange="this.form.submit()" >
+                        <span style="text-decoration: {% if not task['on_progress'] %}line-through{% else %}none{% endif %};">{{ task['task'] }}</span>                                                
+                        <div class="btn-group-right">
+                            <a href="/delete/task/{{ task['id'] }}">
+                                <button type="button" class="btn delete-button">Delete</button>
+                            </a>
+                            <a href="/edit-task/{{ task['id'] }}">
+                                <button type="button" class="btn btn-secondary">Edit</button>
+                            </a>
+                        </div>
+                    </div>
+                    <input type="submit" style="display: none;">
+                </form>
+            </li>
+        {% endif %}
+        {% endfor %}
+        {% for task in tasks %}
+        {% if task['on_progress'] == False%}
+        <li class="list-group-item">
+            <form method="POST" action="/update-task-status/{{ task['id'] }}">
+                <div>
+                    <input type="checkbox" {% if not task['on_progress'] %}checked{% endif %} onchange="this.form.submit()" >
+                    <span style="text-decoration: {% if not task['on_progress'] %}line-through{% else %}none{% endif %};">{{ task['task'] }}</span>                                                
+                    <div class="btn-group-right">
+                        <a href="/delete/task/{{ task['id'] }}">
+                            <button type="button" class="btn delete-button">Delete</button>
+                        </a>
+                        <a href="/edit-task/{{ task['id'] }}">
+                            <button type="button" class="btn btn-secondary">Edit</button>
+                        </a>
+                    </div>
+                </div>
+                <input type="submit" style="display: none;">
+            </form>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div> 
+
+ 
+{% if current_user.role == 1 %}
+    <br>
+    <h2 class="center">Tasks for Group Users</h2>
+    {% for user_id, user_tasks in group_users_tasks.items() %}
+        <div class="container">
+            <h1 class="center">{{user_tasks['username'].values[0].capitalize()}}'s Tasks List</h1>
+            <div class="center">    
+                <button id="toggleList-{{ user_id }}" class="btn btn-primary">Show list</button>
+                <a href="/create-task/{{user_id}}">
+                <button id="toggleList-{{ user_id }}" class="btn btn-secondary">Add {{user_tasks['username'].values[0].capitalize()}} a task
+                </button>
+                </a>
+            </div>
+    
+            <div id="hiddenList-{{ user_id }}" style="display: none;">
+                <ul class="list-group list-group-flush" id="notes">
+                    {% for index, row in user_tasks.iterrows() %}
+                        <li class="list-group-item ">
+                            <div class="form-check">
+                                <label style="text-decoration: {% if row['on_progress'] %}none{% else %}line-through{% endif %};">{{ row['task'] }}</label>
+                                <div class="btn-group-right">
+                                    <a href="/delete/task/{{ row['id'] }}">
+                                        <button type="button" class="btn delete-button">Delete</button>
+                                    </a>
+                                    <a href="/edit-task/{{ row['id'] }}">
+                                        <button type="button" class="btn btn-secondary">Edit</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+<script>
+    // Get all the buttons with IDs starting with 'toggleList-'
+    var toggleButtons = document.querySelectorAll('[id^="toggleList-"]');
+
+    toggleButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Extract the user ID from the button's ID
+            var userId = button.id.replace('toggleList-', '');
+
+            // Find the corresponding hidden list using the user ID
+            var hiddenList = document.getElementById('hiddenList-' + userId);
+
+            if (hiddenList.style.display === 'none') {
+                hiddenList.style.display = 'block';
+            } else {
+                hiddenList.style.display = 'none';
+            }
+        });
+    });
+</script>
+    
+{%endblock%}

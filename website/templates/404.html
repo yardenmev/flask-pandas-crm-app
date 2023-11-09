@@ -1,0 +1,16 @@
+{% extends "base2.html" %} 
+{% block title %}Page Not Found{% endblock %} 
+{% block content%}
+
+<div class="container">
+    <h1 align="center">sorry {{current_user.username.capitalize()}} The requested page does not exist. </h1>
+    <p class="center">404 - Page Not Found. </p>
+    <p class="center">you are welcome to go back home</p>
+    <div class="center">
+        <a href="/">
+            <button type="button" class="btn btn-primary">Take me home!</button>
+        </a>
+    
+    </div>
+
+    {% endblock %}

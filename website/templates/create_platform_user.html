@@ -1,0 +1,364 @@
+{% extends "base2.html" %} {% block title %}Create a New Agent{% endblock %} {%
+block content %}
+
+<div class="container">
+  <h1 class="center">Create a New Agent</h1>
+  <br />
+
+  <form method="POST">
+    <div class="center">
+      <div class="row">
+        <div class="col">
+          <label for="platform_name" class="left">Platform Name:</label>
+          <select class="form-control" name="platform_name" id="platform_name">
+            {% for platform in platform_names %}
+            <option value="{{ platform }}">{{ platform }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col">
+          <label for="name" class="left">Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="name"
+            placeholder="Name"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="phone" class="left">Phone:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="phone"
+            id="phone"
+            placeholder="Phone"
+          />
+        </div>
+        <div class="col">
+          <label for="adresse" class="left">Address:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="address"
+            id="address"
+            placeholder="Address"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="facebook_username" class="left">Facebook Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="facebook_username"
+            id="facebook_username"
+            placeholder="Facebook Username"
+          />
+        </div>
+        <div class="col">
+          <label for="facebook_password" class="left">Facebook Password:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="facebook_password"
+            id="facebook_password"
+            placeholder="Facebook Password"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="linkedIn_username" class="left">LinkedIn Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="linkedIn_username"
+            id="linkedIn_username"
+            placeholder="LinkedIn Username"
+          />
+        </div>
+        <div class="col">
+          <label for="linkedIn_password" class="left">LinkedIn Password:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="linkedIn_password"
+            id="linkedIn_password"
+            placeholder="LinkedIn Password"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="payoneer_username" class="left">Payoneer Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="payoneer_username"
+            id="payoneer_username"
+            placeholder="Payoneer Username"
+          />
+        </div>
+        <div class="col">
+          <label for="payoneer_password" class="left">Payoneer Password:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="payoneer_password"
+            id="payoneer_password"
+            placeholder="Payoneer Password"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="paypal_username" class="left">PayPal Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="paypal_username"
+            id="paypal_username"
+            placeholder="PayPal Username"
+          />
+        </div>
+        <div class="col">
+          <label for="paypal_password" class="left">PayPal Password:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="paypal_password"
+            id="paypal_password"
+            placeholder="PayPal Password"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="instagram_username" class="left"
+            >Instagram Username:</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="instagram_username"
+            id="instagram_username"
+            placeholder="Instagram Username"
+          />
+        </div>
+        <div class="col">
+          <label for="instagram_password" class="left"
+            >Instagram Password:</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="instagram_password"
+            id="instagram_password"
+            placeholder="Instagram Password"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="tiktok_username" class="left">TikTok Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tiktok_username"
+            id="tiktok_username"
+            placeholder="TikTok Username"
+          />
+        </div>
+        <div class="col">
+          <label for="tiktok_password" class="left">TikTok Password:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tiktok_password"
+            id="tiktok_password"
+            placeholder="TikTok Password"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="email1" class="left">Email 1:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="email1"
+            id="email1"
+            placeholder="Email 1"
+          />
+        </div>
+        <div class="col">
+          <label for="email_password1" class="left">Email Password 1:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="email_password1"
+            id="email_password1"
+            placeholder="Email Password 1"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="email2" class="left">Email 2:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="email2"
+            id="email2"
+            placeholder="Email 2"
+          />
+        </div>
+        <div class="col">
+          <label for="email_password2" class="left">Email Password 2:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="email_password2"
+            id="email_password2"
+            placeholder="Email Password 2"
+          />
+        </div>
+      </div>
+        <div class="row">
+          <div class="col">
+              <label for="wp_username" class="left">Wordpress admin username:</label>
+              <input
+                  type="text"
+                  class="form-control"
+                  name="wp_username"
+                  id="wp_username"
+                  placeholder="Wordpress admin username"
+              />
+          </div>
+          <div class="col">
+              <label for="wp_password" class="left">Wordpress admin Password:</label>
+              <input
+                  type="text"
+                  class="form-control"
+                  name="wp_password"
+                  id="wp_password"
+                  placeholder="Wordpress admin Password"
+              />
+          </div>
+      </div>
+      <div class="row">
+          <div class="col">
+              <label for="wp_site" class="left">Wordpress admin url:</label>
+              <input
+                  type="text"
+                  class="form-control"
+                  name="wp_site"
+                  id="wp_site"
+                  placeholder="Wordpress admin url"
+              />
+          </div>
+          <div class="col">
+            <label for="document_reference" class="left">Document Reference:</label>
+            <input
+                type="text"
+                class="form-control"
+                name="document_reference"
+                id="document_reference"
+                placeholder="Document Reference"
+            />
+
+        </div>
+    </div>
+<div class="col">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="birth_date" class="left">Birth Date:</label>
+          <input
+            type="date"
+            class="form-control"
+            name="birth_date"
+            id="birth_date"
+            placeholder="Birth Date"
+          />
+        </div>
+        <div class="col">
+          <label for="country" class="left">Country:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="country"
+            id="country"
+            placeholder="Country"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="hosting_username" class="left">Hosting Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="hosting_username"
+            id="hosting_username"
+            placeholder="hosting_username"
+          />
+        </div>
+        <div class="col">
+          <label for="country" class="left">Hosting Password:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="hosting_password"
+            id="hosting_password"
+            placeholder="Hosting Password"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="owner" class="left">Hosting website:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="hosting_website"
+            id="hosting_website"
+            placeholder="Hosting website"
+          />
+        </div>
+        <div class="col">
+          <label for="owner" class="left">Owner:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="owner"
+            id="owner"
+            placeholder="Owner"
+          />
+
+        </div>
+      </div>
+      <div class="row">
+        <label for="notes" class="left">Notes:</label>
+        <textarea name="notes" id="notes" class="form-control"></textarea>
+      </div>
+  
+    </div>
+    <br>
+    
+    <div class="center">
+      <button type="submit" class="btn btn-lg btn-primary">Post</button>
+      <a href="/"
+        ><button type="button" class="btn btn-lg btn-secondary">Back</button></a
+      >
+    </div>
+  </form>
+</div>
+
+{% endblock %}

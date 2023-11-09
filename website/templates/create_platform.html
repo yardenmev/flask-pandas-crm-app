@@ -1,0 +1,42 @@
+{% extends "base2.html" %}
+{% block title %}create platforme{% endblock %}
+{% block content %}
+<div class="container">
+<h1 class="center">Create a new platforme</h1>
+  <br/>
+  {% for platform in
+     platforms %}
+  {{ platform.platform_Name}}
+  {% endfor %}
+  <form method="POST">
+    <div class="center">
+            <input type="text" class="form-control" name="platform_name" id="platform_name" placeholder="platform name">
+            <button type="submit" name="create-platform" class="btn btn btn-primary">Create platform</button>
+        <br/>
+    </div>
+</form>
+
+    <br />
+    <div align="center">
+      <a href="/"
+        ><button type="button" class="btn btn-lg btn-secondary">Back</button></a>
+    </div>
+</div>
+
+  
+ 
+  {% endblock %}
+
+  <script>
+    document.getElementById("platform_Name").addEventListener("change", function () {
+        if (this.value === "other") {
+            this.setAttribute("name", "custom_platform_Name");
+            this.removeAttribute("required");
+            this.nextElementSibling.style.display = "block";
+        } else {
+            this.setAttribute("name", "platform_Name");
+            this.setAttribute("required", "required");
+            this.nextElementSibling.style.display = "none";
+        }
+    });
+</script>

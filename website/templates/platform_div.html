@@ -1,0 +1,66 @@
+{% extends "base2.html" %}
+{% block title %}{{platform_Name}} services{% endblock %}
+{% block content %}
+
+<div class="container">
+  {% if services %}
+  <h1 class="center">all {{platform_name}}'s services</h1>
+  {% else %}
+  <p>No posts available</p>
+  {% endif %}
+  <div class="table-wrapper">
+
+
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Used By</th>
+        <th>Service Type</th>
+        <th>Website</th>
+        <th>Web Username</th>
+        <th>Web Password</th>
+        <th>Email</th>
+        <th>Email Password</th>
+        <th>IP/Domain</th>
+        <th>IP Username</th>
+        <th>IP Password</th>
+        <th>Date Exp</th>
+        <th>Date Created</th>
+        <th>Author</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>         
+      {% for item in services %}
+      <tr class="center">
+          <td>{{ item.used_by }}</td>
+          <td>{{ item.service_type }}</td>
+          <td>{{ item.website }}</td>
+          <td>{{ item.web_username }}</td>
+          <td>{{ item.web_password }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.email_password }}</td>
+          <td>{{ item.ip }}</td>
+          <td>{{ item.ip_username }}</td>
+          <td>{{ item.ip_password }}</td>
+          <td>{{ item.date_exp.strftime('%d/%m/%Y') }}</td>
+          <td>{{ item.date_created.strftime('%d/%m/%Y') }}</td>
+          <td>{{ item.user.first_name }}</td>
+          <td>
+              <div class="btn-group">
+                  <a href="/edit-service/{{ item.id }}" class="dropdown-item">
+                      <button type="button" class="btn btn-secondary">Edit</button>
+                  </a>
+              </div>
+          </td>
+      </tr>
+      {% endfor %}
+  </tbody>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+{% endblock %}

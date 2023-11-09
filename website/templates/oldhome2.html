@@ -1,0 +1,57 @@
+{% extends "base2.html" %} 
+{% block title %}Home{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+
+<div class="container">
+    <h1 class="center">Home</h1>
+    <div class="table-wrapper">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Platform Name</th>
+          <th>Used By</th>
+          <th>Service Type</th>
+          <th>Website</th>
+          <th>Web Username</th>
+          <th>Web Password</th>
+          <th>Email</th>
+          <th>Email Password</th>
+          <th>IP/Domain</th>
+          <th>IP Username</th>
+          <th>IP Password</th>
+          <th>Date Exp</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>         
+        {% for item in services %}
+        <tr class="center">
+            <td><a href="/{{ item['platform_name'] }}" class="dropdown-item">{{ item['platform_name'] }}</a></td>
+            <td>{{ item['used_by'] }}</td>
+            <td>{{ item['service_type'] }}</td>
+            <td>{{ item['website'] }}</td>
+            <td>{{ item['web_username'] }}</td>
+            <td>{{ item['web_password'] }}</td>
+            <td>{{ item['email'] }}</td>
+            <td>{{ item['email_password'] }}</td>
+            <td>{{ item['ip'] }}</td>
+            <td>{{ item['ip_username'] }}</td>
+            <td>{{ item['ip_password'] }}</td>
+            <td>{{ item['date_exp'] }}</td>
+            <td>
+                <div class="btn-group">
+                    <a href="/edit-service/{{ loop.index0 }}" class="dropdown-item">
+                        <button type="button" class="btn btn-secondary">Edit</button>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </div>
+  </table>
+</body>
+</html>
+</div>
+{%endblock%}

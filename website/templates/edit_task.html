@@ -1,0 +1,21 @@
+{% extends "base2.html" %} 
+{% block title %}edit note{% endblock %} 
+{% block content%}
+
+<div class="container">
+    <h1 align="center">Edit task </h1>
+    <form method="POST">
+        <div class="form-row">
+            <div class="center">
+                <input type="text"  placeholder="edit task" class="form-control" name="task" id="task" value="{{row_data['task']}}"></textarea>
+            </div>
+            <br>
+            <div align="center">
+                <button type="submit" class="btn btn btn-primary">Save</button>
+            </div>
+            <br/>
+        </div>
+    </form>
+    <div class="center"><button class="btn delete-button" onclick="goBack()">Cancel </button></div>
+</div>
+    {% endblock %}

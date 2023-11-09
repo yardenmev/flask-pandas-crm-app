@@ -1,0 +1,64 @@
+{% extends "base2.html" %} 
+{% block title %}edit note{% endblock %} 
+{% block content%}
+
+<div class="container">
+    <h1 class="center"> {{user_name.capitalize()}}'s Tasks List  </h1>
+    <form method="POST">
+        <div class="center">
+            <input type="text" placeholder="Add a task" class="form-control input-style" name="task" id="task">
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </div>
+    </form>
+    <br>
+<div class="center"><a href="/create_task"> <button class="btn delete-button" >Back</button></a></div>
+    <br>
+    
+    <ul id="todo">
+        {% for task in tasks %}
+        {% if task['on_progress'] == True%}
+
+            <li class="list-group-item">
+                <form method="POST" action="/update-task-status/{{ task['id'] }}">
+                    <div>
+                        <input type="checkbox" {% if not task['on_progress'] %}checked{% endif %} onchange="this.form.submit()" >
+                        <span style="text-decoration: {% if not task['on_progress'] %}line-through{% else %}none{% endif %};">{{ task['task'] }}</span>                                                
+                        <div class="btn-group-right">
+                            <a href="/delete/task/{{ task['id'] }}">
+                                <button type="button" class="btn delete-button">Delete</button>
+                            </a>
+                            <a href="/edit-task/{{ task['id'] }}">
+                                <button type="button" class="btn btn-secondary">Edit</button>
+                            </a>
+                        </div>
+                    </div>
+                    <input type="submit" style="display: none;">
+                </form>
+            </li>
+        {% endif %}
+        {% endfor %}
+        {% for task in tasks %}
+        {% if task['on_progress'] == False%}
+        <li class="list-group-item">
+            <form method="POST" action="/update-task-status/{{ task['id'] }}">
+                <div>
+                    <input type="checkbox" {% if not task['on_progress'] %}checked{% endif %} onchange="this.form.submit()" >
+                    <span style="text-decoration: {% if not task['on_progress'] %}line-through{% else %}none{% endif %};">{{ task['task'] }}</span>                                                
+                    <div class="btn-group-right">
+                        <a href="/delete/task/{{ task['id'] }}">
+                            <button type="button" class="btn delete-button">Delete</button>
+                        </a>
+                        <a href="/edit-task/{{ task['id'] }}">
+                            <button type="button" class="btn btn-secondary">Edit</button>
+                        </a>
+                    </div>
+                </div>
+                <input type="submit" style="display: none;">
+            </form>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div> 
+
+    {% endblock %}

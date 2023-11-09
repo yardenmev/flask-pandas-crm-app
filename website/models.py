@@ -1,0 +1,101 @@
+# from . import db
+# from flask_login import UserMixin
+# from sqlalchemy.sql import func
+# from datetime import datetime
+
+
+# class Note(db.Model):
+#     on_progress = db.Column(db.Boolean, default=True)
+#     id = db.Column(db.Integer, primary_key=True)
+#     data = db.Column(db.String(10000))
+#     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+#     date_done = db.Column(db.DateTime(timezone=True), default=func.now())
+#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+# class User(db.Model, UserMixin):
+#     id = db.Column(db.Integer, primary_key=True)
+#     email = db.Column(db.String(150), unique=True)
+#     password = db.Column(db.String(150))
+#     first_name = db.Column(db.String(150))
+#     notes = db.relationship('Note')
+#     posts = db.relationship('Service', backref='user', passive_deletes=True)
+    
+# class Service(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     platform_name = db.Column(db.Text, db.ForeignKey('platform.platform_name'))
+#     used_by = db.Column(db.Text, nullable=True)
+#     service_type = db.Column(db.Text, nullable=True)
+#     website =  db.Column(db.Text, nullable=True)
+#     web_username = db.Column(db.Text, nullable=True)
+#     web_password = db.Column(db.Text, nullable=True)
+#     email = db.Column(db.Text, nullable=True)
+#     email_password = db.Column(db.Text, nullable=True)
+#     ip = db.Column(db.Text, nullable=True)
+#     ip_username = db.Column(db.Text, nullable=True)
+#     ip_password = db.Column(db.Text, nullable=True)
+#     date_exp = db.Column(db.DateTime(timezone=True))
+#     doc_reff = db.Column(db.Text, nullable=True)
+#     phone = db.Column(db.Text, nullable=True)
+#     country = db.Column(db.Text, nullable=True)
+#     etc = db.Column(db.Text, nullable=True)
+#     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+#     author = db.Column(db.Integer, db.ForeignKey('user.id', ondelete="CASCADE"), nullable=True)
+
+# class Credit(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     balance = db.Column(db.Integer, nullable=True)
+#     doc_reff = db.Column(db.Text, nullable=True)
+#     card_number = db.Column(db.Integer, nullable=True)
+#     date_exp = db.Column(db.DateTime(timezone=True))
+#     cvv = db.Column(db.Integer, nullable=True)
+#     adresse = db.Column(db.Text, nullable=True)
+#     card_holder = db.Column(db.Text, nullable=True)
+#     card_type = db.Column(db.Text, nullable=True)
+#     card_website = db.Column(db.Text, nullable=True)
+#     web_username = db.Column(db.Text, nullable=True)
+#     web_password = db.Column(db.Text, nullable=True)
+#     email = db.Column(db.Text, nullable=True)
+#     email_password = db.Column(db.Text, nullable=True)
+#     notes = db.Column(db.Text, nullable=True)
+#     platform_name = db.Column(db.Text, db.ForeignKey('platform.platform_name'))
+#     owner = db.Column(db.Text, nullable=True)
+#     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+#     author = db.Column(db.Integer, db.ForeignKey('user.id', ), nullable=True)
+
+# class agent(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.Text, nullable=True)
+#     adresse = db.Column(db.Text, nullable=True)
+#     birth_date = db.Column(db.DateTime(timezone=True))
+#     phone = db.Column(db.Text, nullable=True)
+#     fb_username = db.Column(db.Text, nullable=True)
+#     fb_password = db.Column(db.Text, nullable=True)
+#     linkdin_username = db.Column(db.Text, nullable=True)
+#     linkdin_password = db.Column(db.Text, nullable=True)
+#     payoneer_username = db.Column(db.Text, nullable=True)
+#     payoneer_password = db.Column(db.Text, nullable=True)
+#     paypal_username = db.Column(db.Text, nullable=True)
+#     paypal_password = db.Column(db.Text, nullable=True)
+#     instagram_username = db.Column(db.Text, nullable=True)
+#     instagram_password = db.Column(db.Text, nullable=True)
+#     tiktok_username = db.Column(db.Text, nullable=True)
+#     tiktok_password = db.Column(db.Text, nullable=True)
+#     email1 = db.Column(db.Text, nullable=True)
+#     email_password1 = db.Column(db.Text, nullable=True)
+#     email2 = db.Column(db.Text, nullable=True)
+#     email_password2 = db.Column(db.Text, nullable=True)
+#     doc_reff = db.Column(db.Text, nullable=True)
+#     notes = db.Column(db.Text, nullable=True)
+#     platform_name = db.Column(db.Text, db.ForeignKey('platform.platform_name'))
+#     country = db.Column(db.Text, nullable=True)
+#     owner = db.Column(db.Text, nullable=True)
+#     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+#     author = db.Column(db.Integer, db.ForeignKey('user.id', ), nullable=True)
+
+# class Platform(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     platform_name = db.Column(db.Text, nullable=True,  unique=True)
+#     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+#     Services = db.relationship('Service', backref='platform', passive_deletes=True)
+

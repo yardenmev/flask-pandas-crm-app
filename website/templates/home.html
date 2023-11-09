@@ -1,0 +1,152 @@
+{% extends "base2.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div class="home-dashboard-grid-container">
+    <div class="box-1"> 
+        <div class="center">
+        <h1 class="center">המשימות שלי</h1> 
+            <a  href="/create_task">
+                <button type="button" class="btn btn-primary">Add a note</button>
+            </a>
+        </div>
+        <ul id="todo">
+        {% for task in tasks %}
+        {% if task['on_progress'] == True%}
+            <li class="list-group-item">
+                <form method="POST" action="/update-task-status/{{ task['id'] }}">
+                    <div>
+                        <input type="checkbox" {% if not task['on_progress'] %}checked{% endif %} onchange="this.form.submit()" >
+                        <span style="text-decoration: {% if not task['on_progress'] %}line-through{% else %}none{% endif %};">{{ task['task'] }}</span>                                                
+                        
+                        <div class="btn-group-right">
+                            <a href="/delete/task/{{ task['id'] }}">
+                                <button type="button" class="btn delete-button">Delete</button>
+                            </a>
+                            <a href="/edit-note/{{ task['id'] }}">
+                                <button type="button" class="btn btn-secondary">Edit</button>
+                            </a>
+                        </div>
+                    </div>
+                    <input type="submit" style="display: none;">
+                </form>
+            </li>
+        {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="box-2">
+        <h1 class="center">פלטפורמות</h1>  
+        {% for platform in platform_names %}
+        <a href="/show-all/{{ platform }}"><button type="button" class="glow-on-hover">{{platform}}</button></a>
+        {% endfor %}
+        </div>
+    <div class="box-3"> 
+    <h1 class="center">חידושים</h1>
+    <div id='calendar'></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var events = [
+                // Use Flask to pass data from SERVICE_CSV to this JavaScript variable
+                {% for service in services %}
+                {
+                    title: "{{ service.used_by }}'s {{ service.service_type }} - {{ service.platform_name }}",
+                    start: '{{ service.date_exp }}',
+                    url: '/edit-service/{{ service.id }}'
+                },
+                {% endfor %}
+                // Add more events here
+            ];
+    
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: events, // Pass the events data here
+            });
+            calendar.render();
+        });
+    </script>    
+    <!-- <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+      
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            height: 'auto',
+            // stickyHeaderDates: false, // for disabling
+      
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'listMonth,listYear'
+            },
+      
+            // customize the button names,
+            // otherwise they'd all just say "list"
+            views: {
+              listMonth: { buttonText: 'list month' },
+              listYear: { buttonText: 'list year' }
+            },
+      
+            initialView: 'listYear',
+            initialDate: '2023-01-12',
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            events: [
+            {% for service in services %}
+                {
+                    title: "{{ service.used_by }}'s {{ service.service_type }} - {{ service.platform_name }}",
+                    start: '{{ service.date_exp }}',
+                    url: '/edit-service/{{ service.id }}'
+                },
+                {% endfor %}
+           
+            ]
+          });
+      
+          calendar.render();
+        });
+      
+      </script>     -->
+</div>
+    <div class="box-4">
+        <h1 class="center">יישויות שנוספו לאחרונה</h1> 
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Platform Name</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Email Password</th>
+                    <th>Document Reference</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for agent in agents %}
+                    <tr>
+                        <td><a href="/show-all/{{ agent['platform_name'] }}" class="table-link">{{ agent['platform_name'] }}</a></td>
+                        <td>{{ agent['name'] }}</td>
+                        <td>{{ agent['email1'] }}</td>
+                        <td>{{ agent['email_password1'] }}</td>
+                        <td>{{ agent['document_reference'] }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="/edit-platform-user/{{ agent.id }}">
+                                    <button type="button" class="btn btn-secondary">Show more /Edit</button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    
+
+
+{% endblock %}
+
+
+
